@@ -8,12 +8,13 @@ using System.Web;
 using Dapper;
 using System.Data;
 using System.Data.SqlClient;
+using System.Web.Configuration;
 
 namespace NewsHubApi.Providers.User
 {
     public class UserProvider : IUserProvider
     {
-        private string connectionString = ConfigurationManager.AppSettings["connection"];
+        private string connectionString = WebConfigurationManager.ConnectionStrings["sqlconnection"].ConnectionString;
 
         public async Task<UserModel> GetUser(UserModel model)
         {

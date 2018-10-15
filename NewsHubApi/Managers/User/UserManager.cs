@@ -8,12 +8,13 @@ using System.Configuration;
 using System.Threading.Tasks;
 using System.Data.SqlClient;
 using NewsHubApi.Models.DataModels.User;
+using System.Web.Configuration;
 
 namespace NewsHubApi.Managers.User
 {
     public class UserManager : IUserManager
     {
-        private string connectionString = ConfigurationManager.AppSettings["connection"];
+        private string connectionString = WebConfigurationManager.ConnectionStrings["sqlconnection"].ConnectionString;
 
         public async Task<bool> AddNewUser(NewUserDataModel model)
         {
@@ -25,7 +26,7 @@ namespace NewsHubApi.Managers.User
                     connection.Execute("", model, commandType: CommandType.StoredProcedure);
                     return true;
                 }
-                catch (SqlException err)
+                catch (SqlException)
                 {
                     return false;
                 }
