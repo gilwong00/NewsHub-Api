@@ -349,9 +349,11 @@
     <Compile Include="Areas\HelpPage\SampleGeneration\SampleDirection.cs" />
     <Compile Include="Areas\HelpPage\SampleGeneration\TextSample.cs" />
     <Compile Include="Areas\HelpPage\XmlDocumentationProvider.cs" />
+    <Compile Include="Collections\Categories.cs" />
     <Compile Include="Constants\SprocNames.cs" />
     <Compile Include="Controllers\Api\ArticlesApiController.cs" />
     <Compile Include="Controllers\Api\CategoriesApiController.cs" />
+    <Compile Include="Controllers\Api\TestApiController.cs" />
     <Compile Include="Controllers\Api\UserApiController.cs" />
     <Compile Include="Controllers\MVC\AccountController.cs" />
     <Compile Include="Controllers\MVC\HomeController.cs" />

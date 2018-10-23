@@ -13,7 +13,7 @@ namespace NewsHubApi.MongoDB
 
         public IMongoDatabase OpenMongoDBConnection()
         {
-            return new MongoClient().GetDatabase(mongoDBConnection);
+            return new MongoClient(mongoDBConnection).GetDatabase("news_hub_dev");
         }
     }
 }
