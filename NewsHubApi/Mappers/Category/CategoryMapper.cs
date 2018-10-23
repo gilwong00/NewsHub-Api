@@ -1,15 +1,13 @@
-﻿using NewsHubApi.Models.DataModels.Category;
+﻿using NewsHubApi.Collections;
 using NewsHubApi.Models.ViewModels.Category;
-using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Web;
 
 namespace NewsHubApi.Mappers.Category
 {
     public class CategoryMapper : ICategoryMapper
     {
-        public IEnumerable<CategoryViewModel> Map(IEnumerable<CategoryModel> model)
+        public IEnumerable<CategoryViewModel> Map(IEnumerable<Categories> model)
         {
             return model.Select(x => new CategoryViewModel
             {

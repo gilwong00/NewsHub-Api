@@ -1,9 +1,8 @@
-﻿using NewsHubApi.Filters;
+﻿using MongoDB.Driver;
+using NewsHubApi.Collections;
 using NewsHubApi.Mappers.Category;
-using NewsHubApi.Providers.Category;
+using NewsHubApi.MongoDB;
 using System;
-using System.Collections.Generic;
-using System.Linq;
 using System.Net;
 using System.Net.Http;
 using System.Threading.Tasks;
@@ -14,19 +13,19 @@ namespace NewsHubApi.Controllers.Api
     [RoutePrefix("api/category")]
     public class CategoriesApiController : ApiController
     {
-        //providers
-        private readonly ICategoryProvider _categoryProvider;
-
         //mappers
         private readonly ICategoryMapper _categoryMapper;
 
+        //helpers
+        private readonly IMongoDBHelper _mongoDBHelper;
+
         public CategoriesApiController(
-                ICategoryProvider categoryProvider,
-                ICategoryMapper categoryMapper
+                ICategoryMapper categoryMapper,
+                IMongoDBHelper mongoDBHelper
             )
         {
-            _categoryProvider = categoryProvider;
             _categoryMapper = categoryMapper;
+            _mongoDBHelper = mongoDBHelper;
         }
 
         [Route, HttpGet]
@@ -35,7 +34,8 @@ namespace NewsHubApi.Controllers.Api
         {
             try
             {
-                var categories = await _categoryProvider.GetAllCategories();
+                var db = _mongoDBHelper.OpenMongoDBConnection().GetCollection<Categories>("Categories");
+                var categories = await db.Find(Builders<Categories>.Filter.Empty).ToListAsync();
                 var response = _categoryMapper.Map(categories);
                 return Request.CreateResponse(HttpStatusCode.OK, response);
 

@@ -2,7 +2,6 @@ using NewsHubApi.Managers.User;
 using NewsHubApi.Mappers.Category;
 using NewsHubApi.Mappers.User;
 using NewsHubApi.MongoDB;
-using NewsHubApi.Providers.Category;
 using NewsHubApi.Providers.User;
 using NewsHubApi.Services;
 using System;
@@ -58,8 +57,7 @@ namespace NewsHubApi
 
             //Providers
             container.RegisterType<IUserProvider, UserProvider>();
-            container.RegisterType<ICategoryProvider, CategoryProvider>();
-
+            
             //Mappers
             container.RegisterType<IUserMapper, UserMapper>();
             container.RegisterType<ICategoryMapper, CategoryMapper>();

@@ -36,7 +36,11 @@ namespace NewsHubApi.Controllers.Api
             var collection = db.GetCollection<Categories>("Categories");
             var list = new List<Categories>()
             {
-                new Categories {CategoryId = 1, CategoryName = "React"}
+                new Categories {CategoryId = 1, CategoryName = "React"},
+                new Categories {CategoryId = 2, CategoryName = "Javascript"},
+                new Categories {CategoryId = 3, CategoryName = "Vue"},
+                new Categories {CategoryId = 4, CategoryName = "C#"},
+
             };
 
             foreach (var x in list)
